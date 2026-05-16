@@ -29,3 +29,9 @@ report.json
 !.env.example
 *.pem
 *.key
+
+# Dev scratch — hyperparameter tuning & diagnostics (not part of submission)
+bench-p04-pcam/_tune_crossfade.py
+bench-p04-pcam/_tune_temp.py
+bench-p04-pcam/diag_seed42.py
+bench-p04-pcam/diag_seed42_p2.py
