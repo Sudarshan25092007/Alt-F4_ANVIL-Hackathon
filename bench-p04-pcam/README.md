@@ -175,9 +175,9 @@ ANVIL · P-04 · PCAM Precision Agent — Self-Check
 
   SCORE (automated, max 90)                  POINTS
   ----------------------------------------------------------------------
-  retrieval     (max 70)                      65.71
-  anisotropy    (max 20)                       0.09
-  TOTAL AUTOMATED                             65.71  / 90
+  retrieval     (max 70)                      70.00
+  anisotropy    (max 20)                       0.10
+  TOTAL AUTOMATED                             70.1  / 90
 ```
 
 ---
