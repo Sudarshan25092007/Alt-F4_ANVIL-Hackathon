@@ -53,8 +53,7 @@ python self_check.py --adapter adapters.dummy:DummyAgent --quick
 python self_check.py --adapter adapters.anvil_engine:Engine --quick
 
 # 4. Full multi-seed evaluation
-python run.py --adapter adapters.anvil_engine:Engine \
-  --seeds 7 13 31 97 211 503 1009 --out report.json
+python run.py --adapter adapters.anvil_engine:Engine --seeds 7 13 31 97 211 503 1009 --out report.json
 ```
 
 ---
@@ -67,7 +66,7 @@ The central insight of our design is that **geometric isotropisation and noise s
 
 At construction time, the agent runs the frozen PCAM dynamics from each stored pattern $x_k$ to find its true equilibrium $a^*_k$ (per Lemma E3, attractors sit at approximately $\eta R^{-1} x_k$, not at $x_k$ itself):
 
-$$a^*_k = \text{find\_equilibrium}(x_k), \quad k = 1, \ldots, K$$
+$$a^*_k = \text{find equilibrium}(x_k), \quad k = 1, \ldots, K$$
 
 The Hessian diagonal is extracted and cached at each true attractor:
 
@@ -111,7 +110,7 @@ $$\hat{x} = \sum_{k \in \text{Top-3}} w_k\, x_k$$
 
 The per-dimension noise score is standardized against the **global standard deviation** of the memory matrix $\mathbf{X}$ (a stable constant computed once at init), rather than the local residual mean. This prevents the normalizer itself from being corrupted by heavy noise:
 
-$$\text{noise\_score}_i = \frac{|q_i - \hat{x}_i|}{\sigma_{\mathbf{X}} + \varepsilon}$$
+$$\text{noise score}_i = \frac{|q_i - \hat{x}_i|}{\sigma_{\mathbf{X}} + \varepsilon}$$
 
 ---
 
@@ -131,7 +130,7 @@ This creates a natural, data-driven binary between regime types:
 
 The exponential noise gate with a dead-zone threshold of $1.5\sigma$ ensures only genuine outlier dimensions are suppressed:
 
-$$\Pi_{\text{noise},i} = \exp\!\left(-\beta \cdot \max(\text{noise\_score}_i - 1.5,\; 0)\right), \quad \beta = 4.5\,(1 - \text{cleanliness})$$
+$$\Pi_{\text{noise},i} = \exp\!\left(-\beta \cdot \max(\text{noise score}_i - 1.5,\; 0)\right), \quad \beta = 4.5\,(1 - \text{cleanliness})$$
 
 ---
 
